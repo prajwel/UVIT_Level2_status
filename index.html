@@ -109,10 +109,12 @@
 
         html_table = jinja_template.render(status_list=status_list)
         print(type(html_table))
-      `);   
+      `);
+     
     let html_table = await pyodide.globals.get('html_table').toJs();
     document.getElementById("log").innerHTML = html_table;
     }
+    main();  
 
   </script>
 
