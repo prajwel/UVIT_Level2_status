@@ -110,11 +110,11 @@
 
         html_table = jinja_template.render(status_list=status_list)
         print(type(html_table))
-      `);
+      `)
       
-    var $log = $( "#log" ),
-    pyodide.globals.get('html_table').toJs();
-    html = $.parseHTML( html_table ),
+    var $log = $( "#log" )
+    pyodide.globals.get('html_table').toJs()
+    html = $.parseHTML( html_table )
     $log.append( html );
     }
     main();
