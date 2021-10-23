@@ -12,6 +12,7 @@
 
   <!-- Pyodide -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js" crossorigin=""></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <title> UVIT-POC</title>
 </head>
@@ -38,6 +39,9 @@
       </div>
     </div>
   </nav>
+
+  <div id="log">
+  </div>
 
   <script type="text/javascript">
     async function main() {
@@ -106,7 +110,11 @@
 
         html_table = jinja_template.render(status_list=status_list)
       `);
-      pyodide.globals.get('html_table').toJs();
+      
+    var $log = $( "#log" ),
+    str = pyodide.globals.get('html_table').toJs();
+    html = $.parseHTML( str ),
+    $log.append( html );
     }
     main();
   </script>
