@@ -47,7 +47,7 @@
     let pyodide = loadPyodide({
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
       });
-    pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
+    pyodide.loadPackage(["pandas", "numpy", "jinja2"])
     pyodide.runPython(`
         import pandas as pd
         import numpy as np
