@@ -12,7 +12,6 @@
 
   <!-- Pyodide -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js" crossorigin=""></script>
-  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
   <title> UVIT-POC</title>
 </head>
@@ -44,10 +43,11 @@
   </div>
 
   <script type="text/javascript">
-    let pyodide = loadPyodide({
-        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
-      });
-    pyodide.loadPackage(["pandas", "numpy", "jinja2"])
+  	async function main(){
+        let pyodide = await loadPyodide({
+          indexURL : "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
+        });
+    await pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
     pyodide.runPython(`
         import pandas as pd
         import numpy as np
@@ -110,12 +110,10 @@
         html_table = jinja_template.render(status_list=status_list)
         print(type(html_table))
       `);   
-    let html_table = pyodide.globals.get('html_table').toJs();
+    let html_table = await pyodide.globals.get('html_table').toJs();
+    document.getElementById("log").innerHTML = html_table;
+    }
 
-    var $log = $( "#log" ),
-      html = $.parseHTML( html_table );
-
-    $log.append( html );
   </script>
 
 
