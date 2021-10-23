@@ -44,7 +44,7 @@
   </div>
 
   <script type="text/javascript">
-    let pyodide = await loadPyodide({
+    let pyodide = loadPyodide({
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
       });
     pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
