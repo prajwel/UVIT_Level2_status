@@ -44,12 +44,11 @@
   </div>
 
   <script type="text/javascript">
-    async function main() {
-      let pyodide = await loadPyodide({
+    let pyodide = await loadPyodide({
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
       });
-      await pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
-      pyodide.runPython(`
+    await pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
+    pyodide.runPython(`
         import pandas as pd
         import numpy as np
         from jinja2 import Template
@@ -110,8 +109,7 @@
 
         html_table = jinja_template.render(status_list=status_list)
         print(type(html_table))
-      `);
-    }   
+      `);   
     let html_table = pyodide.globals.get('html_table').toJs();
 
     var $log = $( "#log" ),
