@@ -42,7 +42,7 @@
   <div id="log">
   </div>
 
-  <script type="text/javascript">
+  <script>
   	async function main(){
         let pyodide = await loadPyodide({
           indexURL : "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
@@ -110,12 +110,9 @@
         html_table = jinja_template.render(status_list=status_list)
         print(type(html_table))
       `);
-     
-    let html_table = await pyodide.globals.get('html_table').toJs();
-    document.getElementById("log").innerHTML = html_table;
+    document.getElementById("log").innerHTML = pyodide.globals.get('html_table').toJs();      
     }
-    main();  
-
+    main();      
   </script>
 
 
