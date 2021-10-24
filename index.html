@@ -108,7 +108,7 @@
         html_table = jinja_template.render(status_list=status_list)
         print(type(html_table))
       `);
-    document.getElementById("log").innerHTML = await pyodide.globals.get('html_table').toJs();
+    document.getElementById("log").innerHTML = pyodide.globals.get('html_table');
     };      
     main();
   
