@@ -30,8 +30,8 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/UVIT_Level2_status">UVIT Status
-              <span class="sr-only">(current)</span>
+            <a class="nav-link" href="/UVIT_Level2_status">Level2 Status
+              <span class="sr-only"></span>
             </a>
           </li>
         </ul>
@@ -39,7 +39,7 @@
     </div>
   </nav>
 
-  <div id="log" class="container">
+  <div id="l2status" class="container">
     <div class="text-center">
       <button class="btn btn-primary" type="button" disabled>
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -113,7 +113,7 @@
 
         html_table = jinja_template.render(status_list=status_list)
       `);
-      document.getElementById("log").innerHTML = pyodide.globals.get('html_table');
+      document.getElementById("l2status").innerHTML = pyodide.globals.get('html_table');
     };
     main();
 
