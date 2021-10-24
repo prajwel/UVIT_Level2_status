@@ -43,11 +43,8 @@
   </div>
 
   <script>
-  	async function main(){
-        let pyodide = await loadPyodide({
-          indexURL : "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
-        });
-    await pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
+    pyodide = loadPyodide({indexURL : "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"});
+    pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
     pyodide.runPython(`
         import pandas as pd
         import numpy as np
@@ -111,8 +108,6 @@
         print(type(html_table))
       `);
     document.getElementById("log").innerHTML = pyodide.globals.get('html_table').toJs();      
-    }
-    main();      
   </script>
 
 
