@@ -43,7 +43,7 @@
   <div class="text-center">
   <button class="btn btn-primary" type="button" disabled>
   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-  Loading... Please wait while the data is being fetched.
+  Loading... Please wait while the data is being fetched...
     </button>
     </div>
   </div>
@@ -112,7 +112,6 @@
         """)
 
         html_table = jinja_template.render(status_list=status_list)
-        print(type(html_table))
       `);
     document.getElementById("log").innerHTML = pyodide.globals.get('html_table');
     };      
