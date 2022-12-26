@@ -11,7 +11,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!-- Pyodide -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js" crossorigin=""></script>
 
   <title> UVIT-POC</title>
 </head>
@@ -50,7 +50,7 @@
 
   <script>
     async function main() {
-      let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/" });
+      let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.21.3/full/" });
       await pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
       await pyodide.runPython(`
         import pandas as pd
@@ -76,6 +76,8 @@
                 status = 'L2 pipeline processing issues, please contact UVIT-POC for details'
             elif entry == 'y':
                 status = 'Both L1 & L2 has been sent to ISSDC, please check ISSDC AstroBrowse'
+            elif entry == 'x':
+                status = 'Data problems, please contact UVIT-POC for details'
             elif pd.isnull(entry):
                 status = 'No merged L1 data yet available from ISRO'
             return status
