@@ -78,6 +78,8 @@
                 status = 'Both L1 & L2 has been sent to ISSDC, please check ISSDC AstroBrowse'
             elif entry == 'x':
                 status = 'Data problems, please contact UVIT-POC for details'
+            elif entry == 'b':
+                status = 'BOD occurred, please contact UVIT-POC for details'              
             elif pd.isnull(entry):
                 status = 'No merged L1 data yet available from ISRO'
             return status
