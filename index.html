@@ -11,7 +11,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!-- Pyodide -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.22.1/full/pyodide.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js" crossorigin=""></script>
 
   <title> UVIT-POC</title>
 </head>
@@ -50,7 +50,7 @@
 
   <script>
     async function main() {
-      let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.22.1/full/" });
+      let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/" });
       await pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
       await pyodide.runPython(`
         import pandas as pd
@@ -71,7 +71,7 @@
         def convert_status(entry):
             status = 'Unknown, contact UVIT-POC'
             if entry == 'p':
-                status = 'No merged L1 data yet available from ISRO'
+                status = 'No merged L1 data yet available from ISSDC'
             elif entry in ['n', 'w']:
                 status = 'L2 pipeline processing issues, please contact UVIT-POC for details'
             elif entry == 'y':
