@@ -81,7 +81,7 @@
             elif entry == 'b':
                 status = 'BOD occurred, please contact UVIT-POC for details'              
             elif pd.isnull(entry):
-                status = 'No merged L1 data yet available from ISRO'
+                status = 'No merged L1 data yet available from ISSDC'
             return status
 
         df = pd.read_csv(open_url(master_file))
