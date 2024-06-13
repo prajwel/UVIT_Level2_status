@@ -11,7 +11,7 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!-- Pyodide -->
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js" crossorigin=""></script>
 
   <title> UVIT-POC</title>
 </head>
@@ -50,7 +50,7 @@
 
   <script>
     async function main() {
-      let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/" });
+      let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.26.1/full/" });
       await pyodide.loadPackage(["pandas", "numpy", "jinja2"]);
       await pyodide.runPython(`
         import pandas as pd
@@ -84,12 +84,32 @@
                 status = 'No merged L1 data yet available from ISSDC'
             return status
 
+        def convert_seven_status(entry):
+            status = 'Unknown, contact UVIT-POC'
+            if entry == 'p':
+                status = 'No merged L1 data yet available from ISSDC'
+            elif entry in ['n', 'w']:
+                status = 'L2 pipeline processing issues, please contact UVIT-POC for details'
+            elif entry == 'y':
+                status = 'Arivu version available, please check ISSDC AstroBrowse'
+            elif entry == 'x':
+                status = 'Data problems, please contact UVIT-POC for details'
+            elif entry == 'b':
+                status = 'BOD occurred, please contact UVIT-POC for details'              
+            elif pd.isnull(entry):
+                status = 'No merged L1 data yet available from ISSDC'
+            return status
+
+
         df = pd.read_csv(open_url(master_file))
         df = df[df['PV'] != 'y'] # No need to display PV phase data.
         selected_df = df[['ObsID', 'date', '6.3 L2']]
         array = selected_df.values
         array[:, 1] = [convert_date_to_string(d) for d in array[:, 1]]
         array[:, 2] = [convert_status(d) for d in array[:, 2]]
+        seven_status = [convert_seven_status(d) for d in df['7 L2']]
+        seven_mask = ~df['7 L2'].isna()
+        array[:, 2][seven_mask] = np.array(seven_status)[seven_mask]
         status_list = list(array)
 
         jinja_template = Template("""
