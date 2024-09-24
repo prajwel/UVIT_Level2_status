@@ -69,35 +69,35 @@
             return modified_str_date
 
         def convert_status(entry):
-            status = 'Unknown, contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;)'
+            status = ''
             if entry == 'p':
-                status = 'No merged L1 data yet available from ISSDC'
+                status = 'Complete L1 data not yet available from ISSDC.'
             elif entry in ['n', 'w']:
-                status = 'L2 pipeline processing issues, please contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;) for details'
+                status = 'L2 Data could not be generated at the POC. The PI may please contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;) for details.'
             elif entry == 'y':
-                status = 'Both L1 & L2 has been sent to ISSDC, please check ISSDC AstroBrowse'
+                status = 'Both L1 & L2 products generated with pipeline version 6.3 have been sent to ISSDC.'
             elif entry == 'x':
-                status = 'Data problems, please contact UVIT-POC for details'
+                status = 'L2 Data could not be generated at the POC. The PI may please contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;) for details.'
             elif entry == 'b':
-                status = 'BOD occurred, please contact UVIT-POC for details'              
+                status = 'BOD occurred: L1 data not useful. The PI may please contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;) for details'              
             elif pd.isnull(entry):
-                status = 'No merged L1 data yet available from ISSDC'
+                status = 'Complete L1 data not yet available from ISSDC.'
             return status
 
         def convert_seven_status(entry):
-            status = 'Unknown, contact UVIT-POC'
+            status = ''
             if entry == 'p':
-                status = 'No merged L1 data yet available from ISSDC'
+                status = 'Complete L1 data not yet available from ISSDC.'
             elif entry in ['n', 'w']:
-                status = 'L2 pipeline processing issues, please contact UVIT-POC for details'
+                status = 'L2 Data could not be generated at the POC. The PI may please contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;) for details.'
             elif entry == 'y':
-                status = 'Arivu version available, please check ISSDC AstroBrowse'
+                status = 'Both L1 & L2 products generated with pipeline version 7+ have been sent to ISSDC.'
             elif entry == 'x':
-                status = 'Data problems, please contact UVIT-POC for details'
+                status = 'L2 Data could not be generated at the POC. The PI may please contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;) for details.'
             elif entry == 'b':
-                status = 'BOD occurred, please contact UVIT-POC for details'              
+                status = 'BOD occurred: L1 data not useful. The PI may please contact UVIT-POC (&#117;&#118;&#105;&#116;&#046;&#097;&#116;&#099;&#064;&#105;&#105;&#097;&#112;&#046;&#114;&#101;&#115;&#046;&#105;&#110;) for details'              
             elif pd.isnull(entry):
-                status = 'No merged L1 data yet available from ISSDC'
+                status = 'Complete L1 data not yet available from ISSDC.'
             return status
 
 
